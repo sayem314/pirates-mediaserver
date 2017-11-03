@@ -61,6 +61,13 @@ else
 	echo "Jackett installation skipped."
 fi
 
+# Install qbittorrent
+if [[ $QBITTORRENT != "no" ]]; then
+	[[ -e /usr/bin/qbittorrent-nox ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/qbittorrent.sh -O - -o /dev/null|bash
+else
+	echo "qBittorrent installation skipped."
+fi
+
 # Install plex
 if [[ $PLEX != "no" ]]; then
 	[[ -d /usr/lib/plexmediaserver ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/plex.sh -O - -o /dev/null|bash
