@@ -25,7 +25,6 @@ pkill qbittorrent-nox
 SU_END
 
 clear
-sed -i -e 's/Port=8080/Port=9091/g' $home/.config/qBittorrent/qBittorrent.conf
 
 # Create startup service
 init=$(cat /proc/1/comm)
@@ -51,6 +50,9 @@ WantedBy=multi-user.target
 	systemctl enable qbittorrent
 	service qbittorrent start
 fi
+
+sleep 2
+sed -i -e 's/Port=8080/Port=9091/g' $home/.config/qBittorrent/qBittorrent.conf && service qbittorrent restart
 
 echo "Install finished. Default settings:"
 echo "User: admin"
