@@ -38,7 +38,7 @@ Description=Sonarr Daemon
 After=network.target
 
 [Service]
-WorkingDirectory=$installdir/Sonarr
+WorkingDirectory=$installdir/NzbDrone
 Type=simple
 User=$user
 ExecStart=/usr/bin/mono NzbDrone.exe --NoRestart
