@@ -4,9 +4,8 @@
 #
 
 # Global value
-user="qbtuser"
-user_pvr="mediaserver"
-home="/home/$user"
+user="mediaserver"
+home="/opt/$user"
 
 # Creating non-root user
 echo "Creating user '$user'"
@@ -27,9 +26,8 @@ SU_END
 
 clear
 sed -i -e 's/Port=8080/Port=9091/g' $home/.config/qBittorrent/qBittorrent.conf
-mkdir -p /home/qbtuser/Downloads /home/qbtuser/tmp
-chown -R $user:$user_pvr /home/qbtuser/Downloads /home/qbtuser/tmp
-chmod -R 2775 /home/qbtuser/Downloads /home/qbtuser/tmp
+mkdir -p $home/qBittorrent/Downloads $home/qBittorrent/tmp
+chown -R $user:$user $home/qBittorrent
 
 # Create startup service
 init=$(cat /proc/1/comm)
