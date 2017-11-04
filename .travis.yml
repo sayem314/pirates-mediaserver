@@ -20,4 +20,4 @@ script:
  - shellcheck plex/*.sh
  - shellcheck qbittorrent/*.sh
  - sed -i -e 1,11d setup.sh
- - ./setup.sh
+ - bash setup.sh
