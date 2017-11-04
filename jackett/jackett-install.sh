@@ -24,10 +24,10 @@ fi
 cd $installdir || exit
 
 echo "Installing jackett"
-wget $( wget -qO- https://api.github.com/repos/Jackett/Jackett/releases | grep Jackett.Binaries.Mono.tar.gz | grep browser_download_url | head -1 | cut -d \" -f 4 )
+wget -q $( wget -qO- https://api.github.com/repos/Jackett/Jackett/releases | grep Jackett.Binaries.Mono.tar.gz | grep browser_download_url | head -1 | cut -d \" -f 4 )
 tar -xzf Jackett.Binaries.Mono.tar.gz
 rm -f Jackett.Binaries.Mono.tar.gz
-chown -R $user:$user $installdir/Jackett
+chown -R $user:$user Jackett
 
 # Create startup service
 init=$(cat /proc/1/comm)
