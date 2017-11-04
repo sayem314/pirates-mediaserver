@@ -1,2 +1,2 @@
-# pirates-mediaserver
-private media server installation script
+## pirates-mediaserver
+work in progress. come back later.
