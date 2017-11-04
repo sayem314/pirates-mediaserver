@@ -16,7 +16,7 @@ else
 fi
 
 echo "Installing qbitorrent. Please wait!"
-apt-get install sed sudo qbittorrent-nox -y
+apt-get install sed sudo qbittorrent-nox -qqy
 
 sudo -u "$user" HOME="$home" /bin/bash <<'SU_END'
 yes | qbittorrent-nox &
