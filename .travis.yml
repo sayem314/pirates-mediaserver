@@ -1,0 +1,21 @@
+language: bash
+
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    sources:
+    - debian-sid
+    packages:
+    - shellcheck
+
+script:
+ - shellcheck setup.sh
+ - shellcheck jackett/*.sh
+ - shellcheck sonarr/*.sh
+ - shellcheck radarr/*.sh
+ - shellcheck mono/*.sh
+ - shellcheck plex/*.sh
+ - shellcheck qbittorrent/*.sh
+ - wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/setup.sh -O - -o /dev/null|bash
