@@ -8,7 +8,7 @@ user="mediaserver"
 installdir="/opt/$user"
 
 # install mono if not exist
-hash mono 2>/dev/nul || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono.sh -O - -o /dev/null|bash
+hash mono 2>/dev/null || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono.sh -O - -o /dev/null|bash
 
 # Creating non-root user
 [[ -d $installdir ]] || mkdir -p $installdir
