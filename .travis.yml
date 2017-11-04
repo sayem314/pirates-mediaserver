@@ -19,5 +19,3 @@ script:
  - shellcheck mono/*.sh
  - shellcheck plex/*.sh
  - shellcheck qbittorrent/*.sh
- - sed -i -e 1,11d setup.sh
- - bash setup.sh
