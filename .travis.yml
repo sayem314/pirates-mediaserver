@@ -11,6 +11,7 @@ addons:
     - shellcheck
 
 script:
+ - export SHELLCHECK_OPTS="-e SC2002"
  - shellcheck setup.sh
  - shellcheck jackett/*.sh
  - shellcheck sonarr/*.sh
