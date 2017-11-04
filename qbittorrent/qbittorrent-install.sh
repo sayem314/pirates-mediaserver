@@ -15,7 +15,7 @@ else
 	useradd -r -m -s /bin/false $user
 fi
 
-echo "Installing qbitorrent"
+echo "Installing qbitorrent. Please wait!"
 apt-get install sed sudo qbittorrent-nox -y
 
 sudo -u "$user" HOME="$home" /bin/bash <<'SU_END'

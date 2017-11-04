@@ -10,7 +10,7 @@ installdir="/opt/$user"
 # working directory
 cd $installdir || exit
 
-echo "Updating sonarr"
+echo "Updating sonarr. Please wait!"
 wget -q http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz || exit
 # stop sonarr first
 service sonarr stop

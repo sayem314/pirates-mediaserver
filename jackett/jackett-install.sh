@@ -23,7 +23,7 @@ fi
 # working directory
 cd $installdir || exit
 
-echo "Installing jackett"
+echo "Installing jackett. Please wait!"
 wget -q "$( wget -qO- https://api.github.com/repos/Jackett/Jackett/releases | grep Jackett.Binaries.Mono.tar.gz | grep browser_download_url | head -1 | cut -d \" -f 4 )"
 tar -xzf Jackett.Binaries.Mono.tar.gz
 rm -f Jackett.Binaries.Mono.tar.gz

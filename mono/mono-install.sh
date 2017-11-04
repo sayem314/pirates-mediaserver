@@ -3,7 +3,7 @@
 # mono-installer by @sayem314
 #
 
-echo "Installing mono"
+echo "Installing mono. Please wait!"
 # Detecting apt-get/yum
 if hash apt-get 2>/dev/null; then
 	apt-get install lsb-release curl dirmngr -qqy

@@ -3,7 +3,7 @@
 # plex-installer by @sayem314
 #
 
-echo "Installing plex"
+echo "Installing plex. Please wait!"
 # Detecting apt-get/yum
 if hash apt-get 2>/dev/null; then
 	# Detect architecture. We only support linux.

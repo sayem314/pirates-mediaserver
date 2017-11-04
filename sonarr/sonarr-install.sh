@@ -23,7 +23,7 @@ fi
 # working directory
 cd $installdir || exit
 
-echo "Installing radarr"
+echo "Installing sonarr. Please wait!"
 wget -q http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz || exit
 tar -xzf NzbDrone.master.tar.gz
 rm -f NzbDrone.master.tar.gz
