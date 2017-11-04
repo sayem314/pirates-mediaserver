@@ -3,8 +3,8 @@
 
 FROM debian:stable-slim
 
-RUN apt-get update -y
-RUN apt-get install sudo wget udev -y
+RUN apt-get update -qq
+RUN apt-get install sudo wget udev -qqy
 
 WORKDIR /opt
 ENV SWAP=no
