@@ -35,42 +35,42 @@ if [[ "$tram" -lt 950 ]]; then
 fi
 
 # install mono if not exist
-hash mono 2>/dev/nul || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono.sh -O - -o /dev/null|bash
+hash mono 2>/dev/nul || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono/mono-install.sh -O - -o /dev/null|bash
 
 # install directory
 DIR="/opt/mediaserver"
 
 # Install sonarr
 if [[ $SONARR != "no" ]]; then
-	[[ -e $DIR/NzbDrone/NzbDrone.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/sonarr.sh -O - -o /dev/null|bash
+	[[ -e $DIR/NzbDrone/NzbDrone.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/sonarr/sonarr-install.sh -O - -o /dev/null|bash
 else
 	echo "Sonarr installation skipped."
 fi
 
 # Install radarr
 if [[ $RADARR != "no" ]]; then
-	[[ -e $DIR/Radarr/Radarr.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/radarr.sh -O - -o /dev/null|bash
+	[[ -e $DIR/Radarr/Radarr.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/radarr/radarr-install.sh -O - -o /dev/null|bash
 else
 	echo "Radarr installation skipped."
 fi
 
 # Install jackett
 if [[ $JACKETT != "no" ]]; then
-	[[ -e $DIR/Jackett/JackettConsole.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/jackett.sh -O - -o /dev/null|bash
+	[[ -e $DIR/Jackett/JackettConsole.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/jackett/jackett-install.sh -O - -o /dev/null|bash
 else
 	echo "Jackett installation skipped."
 fi
 
 # Install qbittorrent
 if [[ $QBITTORRENT != "no" ]]; then
-	[[ -e /usr/bin/qbittorrent-nox ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/qbittorrent.sh -O - -o /dev/null|bash
+	[[ -e /usr/bin/qbittorrent-nox ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/qbittorrent/qbittorrent-install.sh -O - -o /dev/null|bash
 else
 	echo "qBittorrent installation skipped."
 fi
 
 # Install plex
 if [[ $PLEX != "no" ]]; then
-	[[ -d /usr/lib/plexmediaserver ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/plex.sh -O - -o /dev/null|bash
+	[[ -d /usr/lib/plexmediaserver ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/plex/plex-install.sh -O - -o /dev/null|bash
 else
 	echo "plex installation skipped."
 fi
