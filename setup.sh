@@ -37,7 +37,7 @@ if [[ $SWAP != "no" ]]; then
 fi
 
 # install mono if not exist
-hash mono 2>/dev/nul || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono/mono-install.sh -O - -o /dev/null|bash
+hash mono 2>/dev/null || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono/mono-install.sh -O - -o /dev/null|bash
 
 # install directory
 DIR="/opt/mediaserver"
