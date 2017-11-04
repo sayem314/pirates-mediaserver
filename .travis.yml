@@ -19,3 +19,6 @@ script:
  - shellcheck mono/*.sh
  - shellcheck plex/*.sh
  - shellcheck qbittorrent/*.sh
+
+notifications:
+  email: false
