@@ -1,7 +1,5 @@
 #!/bin/bash
-#
 # mono-installer by @sayem314
-#
 
 echo "Installing mono. Please wait!"
 # Detecting apt-get/yum

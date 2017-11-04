@@ -1,7 +1,5 @@
 #!/bin/bash
-#
 # sonarr-updater by @sayem314
-#
 
 # Global value
 user="mediaserver"

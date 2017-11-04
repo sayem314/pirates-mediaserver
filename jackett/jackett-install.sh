@@ -1,7 +1,5 @@
 #!/bin/bash
-#
 # jackett-installer by @sayem314
-#
 
 # Global value
 user="mediaserver"

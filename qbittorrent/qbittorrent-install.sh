@@ -1,7 +1,5 @@
 #!/bin/bash
-#
 # qbittorrent-installer by @sayem314
-#
 
 # Global value
 user="mediaserver"

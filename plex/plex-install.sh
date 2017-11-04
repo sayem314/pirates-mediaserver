@@ -1,7 +1,5 @@
 #!/bin/bash
-#
 # plex-installer by @sayem314
-#
 
 echo "Installing plex. Please wait!"
 # Detecting apt-get/yum
