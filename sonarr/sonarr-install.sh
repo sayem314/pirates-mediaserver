@@ -27,7 +27,7 @@ echo "Installing radarr"
 wget http://update.sonarr.tv/v2/master/mono/NzbDrone.master.tar.gz
 tar -xzf NzbDrone.master.tar.gz
 rm -f NzbDrone.master.tar.gz
-chown -R $user:$user $installdir/NzbDrone
+chown -R $user:$user NzbDrone
 
 # Create startup service
 init=$(cat /proc/1/comm)
