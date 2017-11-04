@@ -13,23 +13,25 @@ fi
 # We will calculate how much swap we would need
 # Create swap file to prevent out of memory errors
 # Do not create swap if system has 1GB or more RAM
-tram=$( free -m | grep Mem | awk 'NR=1 {print $2}' )
-if [[ "$tram" -lt 950 ]]; then
-	tswap=$( cat /proc/meminfo | grep SwapTotal | awk 'NR=1 {print $2$3}' )
-	if [[ "$tswap" = '0kB' ]]; then
-		echo "We will now create 1GB swapfile!"
-		# Do not create if OpenVZ VPS
-		if [[ ! -f /proc/user_beancounters ]]; then
-			echo "Creating swap file, please wait"
-			install -o root -g root -m 0600 /dev/null /swapfile
-			dd if=/dev/zero of=/swapfile bs=1k count=1024k
-			mkswap /swapfile
-			swapon /swapfile
-			echo "/swapfile       swap    swap    auto      0       0" | tee -a /etc/fstab
-		else
-			echo "Swap is not supported on OpenVZ. You might face problems."
-			echo "Ask your provider to add swap or get higher RAM server."
-			sleep 5
+if [[ $SWAP != "no" ]]; then
+	tram=$( free -m | grep Mem | awk 'NR=1 {print $2}' )
+	if [[ "$tram" -lt 950 ]]; then
+		tswap=$( cat /proc/meminfo | grep SwapTotal | awk 'NR=1 {print $2$3}' )
+		if [[ "$tswap" = '0kB' ]]; then
+			echo "We will now create 1GB swapfile!"
+			# Do not create if OpenVZ VPS
+			if [[ ! -f /proc/user_beancounters ]]; then
+				echo "Creating swap file, please wait"
+				install -o root -g root -m 0600 /dev/null /swapfile
+				dd if=/dev/zero of=/swapfile bs=1k count=1024k
+				mkswap /swapfile
+				swapon /swapfile
+				echo "/swapfile       swap    swap    auto      0       0" | tee -a /etc/fstab
+			else
+				echo "Swap is not supported on OpenVZ. You might face problems."
+				echo "Ask your provider to add swap or get higher RAM server."
+				sleep 5
+			fi
 		fi
 	fi
 fi
