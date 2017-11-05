@@ -11,11 +11,9 @@ Requirements
 
 At this moment only following distros are supported.
 
-| Debian  | Ubuntu |
+| Debian  | Ubuntu | CentOS (Experimental) |
 |:---:|:---:|
-| Wheezy (7.x) | Xenial Xerus (16.04.x) |
-| Jessie (8.x) | Trusty Tahr (14.04.x) |
-| Stretch (9.x) | Precise Pangolin (12.04.x) |
+| 7-9 | LTS 12.04-16.04 | 6 & 7 |
 
 Install
 -------
