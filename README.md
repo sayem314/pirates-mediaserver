@@ -11,9 +11,10 @@ Requirements
 
 At this moment only following distros are supported.
 
-| Debian  | Ubuntu | CentOS (Experimental) |
+| Debian | Ubuntu | CentOS |
 |:---:|:---:|:---:|
-| 7-9 | LTS 12.04-16.04 | 6 & 7 |
+| 7-9 | 12.04-16.04 | 6 & 7 |
+| Recommended | LTS Only | Experimental | 
 
 Install
 -------
