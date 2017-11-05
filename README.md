@@ -6,6 +6,7 @@ About
 
 This repository contains scripts for setting up a private media-server. This script can install Plex, Sonarr, Radarr and Jackett on the fly.
 
+
 Requirements
 ------------
 
@@ -13,8 +14,9 @@ At this moment only following distros are supported.
 
 | Debian | Ubuntu | CentOS |
 |:---:|:---:|:---:|
-| 7-9 | 12.04-16.04 | 6 & 7 |
 | Recommended | LTS Only | Experimental | 
+| 7-9 | 12.04-16.04 | 6 & 7 |
+
 
 Install
 -------
