@@ -15,13 +15,7 @@ services:
 
 script:
  - export SHELLCHECK_OPTS="-e SC2002"
- - shellcheck setup.sh
- - shellcheck jackett/*.sh
- - shellcheck sonarr/*.sh
- - shellcheck radarr/*.sh
- - shellcheck mono/*.sh
- - shellcheck plex/*.sh
- - shellcheck qbittorrent/*.sh
+ - find  . -name "*.sh" -print -exec shellcheck {} \;
  - docker build -t mediaserver .
 
 notifications:
