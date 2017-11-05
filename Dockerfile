@@ -14,11 +14,11 @@ ADD * /opt/
 RUN ./mono/mono-install.sh \
 	&& ./jackett/jackett-install.sh \
 	&& ./jackett/jackett-update.sh \
-	&& ./qbittorrent/qbittorrent-install.sh
+	&& ./qbittorrent/qbittorrent-install.sh \
 	&& ./sonarr/sonarr-install.sh \
 	&& ./sonarr/sonarr-update.sh \
 	&& ./radarr/radarr-install.sh \
-	&& ./radarr/radarr-update.sh
+	&& ./radarr/radarr-update.sh \
 	&& ./plex/plex-install.sh
 
 USER mediaserver
