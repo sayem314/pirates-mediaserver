@@ -9,7 +9,7 @@ RUN apt-get install sudo wget udev -qqy
 WORKDIR /opt
 ENV SWAP=no
 
-ADD * /opt/
+ADD . /opt/
 
 RUN ./mono/mono-install.sh \
 	&& ./jackett/jackett-install.sh \
