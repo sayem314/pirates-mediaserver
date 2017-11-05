@@ -15,6 +15,7 @@ services:
 
 script:
  - export SHELLCHECK_OPTS="-e SC2002"
+ - find . -name "*.sh" -exec chmod +x {} \;
  - find . -name "*.sh" -print -exec shellcheck {} \;
  - docker build -t mediaserver .
 
