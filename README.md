@@ -27,7 +27,7 @@ Just execute below code to install them all.
 To exclude certain apps follow these instructions:
 
 ### Step 1
-Download script: `wget https://git.io/setup.sh -O setup.sh -O`
+Download script: `wget https://git.io/setup.sh -O setup.sh`
 
 Make it executable: `chmod +x setup.sh`
 
