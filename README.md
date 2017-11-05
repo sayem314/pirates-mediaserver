@@ -36,3 +36,6 @@ Make it executable: `chmod +x setup.sh`
 Now use variable like this: `PLEX=no JACKETT=No ./setup.sh`
 
 This will install everything else except Plex and Jackett. Hope this explain basic usage.
+
+
+_There is also specific install instruction available on each folder_
