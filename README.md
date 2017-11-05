@@ -22,12 +22,12 @@ Install
 
 Just execute below code to install them all.
 
-`wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/setup.sh -O setup.sh -O - -o /dev/null|bash`
+`wget https://git.io/setup.sh -O - -o /dev/null|bash`
 
 To exclude certain apps follow these instructions:
 
 ### Step 1
-Download script: `wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/setup.sh -O setup.sh -O`
+Download script: `wget https://git.io/setup.sh -O setup.sh -O`
 
 Make it executable: `chmod +x setup.sh`
 
