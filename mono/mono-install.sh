@@ -1,6 +1,12 @@
 #!/bin/bash
 # mono-installer by @sayem314
 
+# check if installed
+if [[ -e /usr/bin/mono ]]; then
+	echo "Mono is already installed."
+	exit
+fi
+
 echo "Installing mono. Please wait!"
 # Detecting apt-get/yum
 if hash apt-get 2>/dev/null; then
