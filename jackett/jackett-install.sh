@@ -5,6 +5,13 @@
 user="mediaserver"
 installdir="/opt/$user"
 
+# check if installed
+if [[ -e $installdir/Jackett/JackettConsole.exe ]]; then
+	echo "Jackett is already installed."
+	echo "You should run update script."
+	exit
+fi
+
 # install mono if not exist
 hash mono 2>/dev/null || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono.sh -O - -o /dev/null|bash
 
