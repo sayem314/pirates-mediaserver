@@ -18,7 +18,7 @@ apt-get install sed sudo qbittorrent-nox -qqy
 
 sudo -u "$user" HOME="$home" /bin/bash <<'SU_END'
 yes | qbittorrent-nox &
-sleep 2
+sleep 5
 pkill qbittorrent-nox
 SU_END
 
