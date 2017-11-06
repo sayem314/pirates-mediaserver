@@ -18,11 +18,12 @@ apt-get install sed sudo qbittorrent-nox -qqy
 
 sudo -u "$user" HOME="$home" /bin/bash <<'SU_END'
 yes | qbittorrent-nox &
-sleep 5
+sleep 4
 pkill qbittorrent-nox
 SU_END
 
 clear
+sleep 2
 sed -i -e 's/Port=8080/Port=9091/g' $home/.config/qBittorrent/qBittorrent.conf
 mkdir -p $home/qBittorrent/Downloads $home/qBittorrent/tmp
 chown -R $user:$user $home/qBittorrent
