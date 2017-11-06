@@ -37,7 +37,7 @@ After=network.target
 
 [Service]
 Type=simple
-User=qbtuser
+User=$user
 ExecStart=/usr/bin/qbittorrent-nox
 Restart=always
 RestartSec=2
