@@ -1,23 +1,16 @@
-language: bash
+language: shell
 
 sudo: required
-dist: trusty
-
-addons:
-  apt:
-    sources:
-    - debian-sid
-    packages:
-    - shellcheck
+dist: bionic
 
 services:
   - docker
 
 script:
- - export SHELLCHECK_OPTS="-e SC2002"
- - find . -name "*.sh" -exec chmod +x {} \;
- - find . -name "*.sh" -print -exec shellcheck {} \;
- - docker build -t mediaserver .
+  - export SHELLCHECK_OPTS="-e SC2002"
+  - find . -name "*.sh" -exec chmod +x {} \;
+  - find . -name "*.sh" -print -exec shellcheck {} \;
+  - docker build -t mediaserver .
 
 notifications:
   email: false
