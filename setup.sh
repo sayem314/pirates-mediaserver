@@ -53,11 +53,18 @@ else
 	echo "Radarr installation skipped."
 fi
 
-# Install jackett
-if [[ $JACKETT != "no" ]]; then
+# Install prowlarr
+if [[ $PROWLARR != "no" ]]; then
+	[[ -e $DIR/Prowlarr/Prowlarr ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/prowlarr/prowlarr-install.sh -O - -o /dev/null|bash
+else
+	echo "Prowlarr installation skipped."
+fi
+
+# Install jackett (optional, prowlarr is the default indexer)
+if [[ $JACKETT == "yes" ]]; then
 	[[ -e $DIR/Jackett/jackett ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/jackett/jackett-install.sh -O - -o /dev/null|bash
 else
-	echo "Jackett installation skipped."
+	echo "Jackett installation skipped (optional, set JACKETT=yes to install)."
 fi
 
 # Install qbittorrent
