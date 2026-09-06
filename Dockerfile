@@ -19,7 +19,7 @@ ENV SWAP=no
 ADD . /opt/
 
 # install each app in its own layer
-RUN ./jackett/jackett-install.sh
+RUN ./prowlarr/prowlarr-install.sh
 RUN ./qbittorrent/qbittorrent-install.sh
 RUN ./sonarr/sonarr-install.sh
 RUN ./radarr/radarr-install.sh

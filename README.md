@@ -2,7 +2,10 @@
 
 ## About
 
-This repository contains scripts for setting up a private media-server. This script can install Plex, Sonarr, Radarr, Jackett and qBittorrent on the fly.
+This repository contains scripts for setting up a private media-server. This script can install Plex, Sonarr, Radarr, Prowlarr, Jackett and qBittorrent on the fly.
+
+Prowlarr is the default indexer and replaces Jackett for new installs.
+Jackett stays available as an optional legacy alternative, enable it with `JACKETT=yes`.
 
 Every installer always fetches the latest upstream release at install time:
 
@@ -10,7 +13,8 @@ Every installer always fetches the latest upstream release at install time:
 | :-- | :----- | :--------- |
 | Sonarr v4 | [Sonarr/Sonarr releases](https://github.com/Sonarr/Sonarr/releases) | no |
 | Radarr v6 | [Radarr/Radarr releases](https://github.com/Radarr/Radarr/releases) | no |
-| Jackett | [Jackett/Jackett releases](https://github.com/Jackett/Jackett/releases) | no |
+| Prowlarr v2 (default indexer) | [Prowlarr/Prowlarr releases](https://github.com/Prowlarr/Prowlarr/releases) | no |
+| Jackett (optional) | [Jackett/Jackett releases](https://github.com/Jackett/Jackett/releases) | no |
 | qBittorrent | [qbittorrent-nox-static releases](https://github.com/userdocs/qbittorrent-nox-static/releases) | no |
 | Plex | [plex.tv downloads feed](https://www.plex.tv/media-server-downloads/) | no |
 
@@ -44,9 +48,11 @@ Make it executable: `chmod +x setup.sh`
 
 ### Step 2
 
-Now use variable like this: `PLEX=no JACKETT=no ./setup.sh`
+Now use variable like this: `PLEX=no PROWLARR=no JACKETT=yes ./setup.sh`
 
-This will install everything else except Plex and Jackett. Hope this explain basic usage.
+This will install everything except Plex and Prowlarr, plus the optional
+Jackett. Every app except Jackett is enabled by default, Jackett needs
+`JACKETT=yes` to install. Hope this explain basic usage.
 
 _There is also specific install and update instruction available on each folder_
 
@@ -66,6 +72,7 @@ Build it with:
 
 Installations made with the 2020 scripts (Sonarr v2 in `NzbDrone`, mono based
 Radarr/Jackett) are not migrated. The new installers place apps in
-`/opt/mediaserver/Sonarr`, `/opt/mediaserver/Radarr` and `/opt/mediaserver/Jackett`.
+`/opt/mediaserver/Sonarr`, `/opt/mediaserver/Radarr`, `/opt/mediaserver/Prowlarr`
+and `/opt/mediaserver/Jackett`.
 Stop and disable the old services before switching over, then move any library
 data you want to keep.
