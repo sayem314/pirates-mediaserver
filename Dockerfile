@@ -1,12 +1,13 @@
-# For testing with Travis-CI only
+# For testing with CI only
 # Build at your own risk
 
 # use latest debian
 FROM debian:stable-slim
 
-# install some required repo
-RUN apt-get update -qq
-RUN apt-get install sudo wget udev -qqy
+# install some required packages
+RUN apt-get update -qq \
+	&& apt-get install -qqy sudo wget ca-certificates udev avahi-daemon procps \
+	&& rm -rf /var/lib/apt/lists/*
 
 # set working directory
 WORKDIR /opt
@@ -17,16 +18,12 @@ ENV SWAP=no
 # copy repo to docker
 ADD . /opt/
 
-# run script
-RUN ./mono/mono-install.sh \
-	&& ./jackett/jackett-install.sh \
-	&& ./jackett/jackett-update.sh \
-	&& ./qbittorrent/qbittorrent-install.sh \
-	&& ./sonarr/sonarr-install.sh \
-	&& ./sonarr/sonarr-update.sh \
-	&& ./radarr/radarr-install.sh \
-	&& ./radarr/radarr-update.sh \
-	&& ./plex/plex-install.sh
+# install each app in its own layer
+RUN ./jackett/jackett-install.sh
+RUN ./qbittorrent/qbittorrent-install.sh
+RUN ./sonarr/sonarr-install.sh
+RUN ./radarr/radarr-install.sh
+RUN ./plex/plex-install.sh
 
 # set default user
 USER mediaserver

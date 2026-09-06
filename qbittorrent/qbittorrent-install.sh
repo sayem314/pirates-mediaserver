@@ -1,9 +1,18 @@
 #!/bin/bash
 # qbittorrent-installer by @sayem314
 
+# Uses the static qbittorrent-nox build, always the latest upstream release
+
 # Global value
 user="mediaserver"
 home="/opt/$user"
+
+# check if installed
+if [[ -e /usr/local/bin/qbittorrent-nox ]]; then
+	echo "qbittorrent-nox is already installed."
+	echo "It updates itself from the web interface."
+	exit
+fi
 
 # Creating non-root user
 echo "Creating user '$user'"
@@ -13,47 +22,61 @@ else
 	useradd -r -m -s /bin/false $user
 fi
 
-echo "Installing qbitorrent. Please wait!"
-apt-get install sed sudo qbittorrent-nox -qqy
+echo "Installing qbittorrent-nox. Please wait!"
+case "$(uname -m)" in
+	x86_64) arch="x86_64" ;;
+	aarch64) arch="aarch64" ;;
+	armv7l) arch="armv7" ;;
+	*)
+		echo "Unsupported architecture: $(uname -m)" >&2
+		exit 1
+		;;
+esac
 
-sudo -u "$user" HOME="$home" /bin/bash <<'SU_END'
-yes | qbittorrent-nox &
-sleep 4
-pkill qbittorrent-nox
-SU_END
+wget -q -O /usr/local/bin/qbittorrent-nox "https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/${arch}-qbittorrent-nox" || exit
+chmod 755 /usr/local/bin/qbittorrent-nox
 
-clear
-sleep 2
-sed -i -e 's/Port=8080/Port=9091/g' $home/.config/qBittorrent/qBittorrent.conf
-mkdir -p $home/qBittorrent/Downloads $home/qBittorrent/tmp
-chown -R $user:$user $home/qBittorrent
+# Seed the config so the first start skips the wizard and uses fixed defaults
+mkdir -p "$home/.config/qBittorrent" "$home/qBittorrent/Downloads" "$home/qBittorrent/tmp"
+cat > "$home/.config/qBittorrent/qBittorrent.conf" <<EOF
+[LegalNotice]
+Accepted=true
+
+[Preferences]
+WebUI\\Port=9091
+WebUI\\Username=admin
+WebUI\\Password_ha1=@ByteArray($(echo -n "adminadmin" | md5sum | awk '{print $1}'))
+EOF
+
+chown -R $user:$user "$home/qBittorrent" "$home/.config"
 
 # Create startup service
-init=$(cat /proc/1/comm)
-if [[ "$init" == "systemd" ]]; then
+if [[ -d /run/systemd/system ]]; then
 	echo "Creating systemd service"
-	echo "[Unit]
+	cat > /etc/systemd/system/qbittorrent.service <<EOF
+[Unit]
 Description=qBittorrent Daemon Service
 After=network.target
 
 [Service]
 Type=simple
 User=$user
-ExecStart=/usr/bin/qbittorrent-nox
+ExecStart=/usr/local/bin/qbittorrent-nox
 Restart=always
 RestartSec=2
 TimeoutStopSec=5
 
 [Install]
 WantedBy=multi-user.target
-"> /etc/systemd/system/qbittorrent.service
+EOF
 	chmod 0644 /etc/systemd/system/qbittorrent.service
 	systemctl daemon-reload
 	systemctl enable qbittorrent
 	service qbittorrent start
 fi
 
+clear
 echo "Install finished. Default settings:"
 echo "User: admin"
-echo "Password: adminadmin"
+echo "Password: adminadmin (a temporary password is printed to the service log if this one is rejected)"
 echo "Port: 9091"
