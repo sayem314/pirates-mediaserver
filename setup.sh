@@ -14,16 +14,16 @@ fi
 # Create swap file to prevent out of memory errors
 # Do not create swap if system has 1GB or more RAM
 if [[ $SWAP != "no" ]]; then
-	tram=$( free -m | grep Mem | awk 'NR=1 {print $2}' )
+	tram=$(awk '/MemTotal/ {print int($2/1024)}' /proc/meminfo)
 	if [[ "$tram" -lt 950 ]]; then
-		tswap=$( cat /proc/meminfo | grep SwapTotal | awk 'NR=1 {print $2$3}' )
+		tswap=$(awk '/SwapTotal/ {print $1$2}' /proc/meminfo)
 		if [[ "$tswap" = '0kB' ]]; then
 			echo "We will now create 1GB swapfile!"
 			# Do not create if OpenVZ VPS
 			if [[ ! -f /proc/user_beancounters ]]; then
 				echo "Creating swap file, please wait"
 				install -o root -g root -m 0600 /dev/null /swapfile
-				dd if=/dev/zero of=/swapfile bs=1k count=1024k
+				dd if=/dev/zero of=/swapfile bs=1M count=1024
 				mkswap /swapfile
 				swapon /swapfile
 				echo "/swapfile       swap    swap    auto      0       0" | tee -a /etc/fstab
@@ -36,36 +36,33 @@ if [[ $SWAP != "no" ]]; then
 	fi
 fi
 
-# install mono if not exist
-hash mono 2>/dev/null || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/mono/mono-install.sh -O - -o /dev/null|bash
-
 # install directory
 DIR="/opt/mediaserver"
 
 # Install sonarr
 if [[ $SONARR != "no" ]]; then
-	[[ -e $DIR/NzbDrone/NzbDrone.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/sonarr/sonarr-install.sh -O - -o /dev/null|bash
+	[[ -e $DIR/Sonarr/Sonarr ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/sonarr/sonarr-install.sh -O - -o /dev/null|bash
 else
 	echo "Sonarr installation skipped."
 fi
 
 # Install radarr
 if [[ $RADARR != "no" ]]; then
-	[[ -e $DIR/Radarr/Radarr.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/radarr/radarr-install.sh -O - -o /dev/null|bash
+	[[ -e $DIR/Radarr/Radarr ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/radarr/radarr-install.sh -O - -o /dev/null|bash
 else
 	echo "Radarr installation skipped."
 fi
 
 # Install jackett
 if [[ $JACKETT != "no" ]]; then
-	[[ -e $DIR/Jackett/JackettConsole.exe ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/jackett/jackett-install.sh -O - -o /dev/null|bash
+	[[ -e $DIR/Jackett/jackett ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/jackett/jackett-install.sh -O - -o /dev/null|bash
 else
 	echo "Jackett installation skipped."
 fi
 
 # Install qbittorrent
 if [[ $QBITTORRENT != "no" ]]; then
-	[[ -e /usr/bin/qbittorrent-nox ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/qbittorrent/qbittorrent-install.sh -O - -o /dev/null|bash
+	[[ -e /usr/local/bin/qbittorrent-nox ]] || wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/qbittorrent/qbittorrent-install.sh -O - -o /dev/null|bash
 else
 	echo "qBittorrent installation skipped."
 fi
