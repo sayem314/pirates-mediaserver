@@ -9,10 +9,10 @@ jobs:
   shellcheck:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Run shellcheck
-        uses: ludeeus/action-shellcheck@master
+        uses: ludeeus/action-shellcheck@v2
         with:
           ignore_paths: >-
             .git
@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: shellcheck
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Build the installer image
         run: docker build -t mediaserver .

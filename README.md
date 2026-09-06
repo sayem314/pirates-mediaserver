@@ -23,7 +23,7 @@ At this moment only following distros are supported.
 |   Debian    |    Ubuntu    |    CentOS    |
 | :---------: | :----------: | :----------: |
 | Recommended |   LTS Only   | Experimental |
-|    11-13    |  20.04-24.04 |      9+      |
+|    12-13    |  22.04-26.04 |      9+      |
 
 - 64-bit (x86_64 or arm64) system
 - systemd for the generated services
@@ -32,13 +32,13 @@ At this moment only following distros are supported.
 
 Just execute below code to install them all.
 
-`wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/setup.sh -O - -o /dev/null|bash`
+`wget https://git.io/setup.sh -O - -o /dev/null|bash`
 
 To exclude certain apps follow these instructions:
 
 ### Step 1
 
-Download script: `wget https://raw.githubusercontent.com/sayem314/pirates-mediaserver/master/setup.sh -O setup.sh`
+Download script: `wget https://git.io/setup.sh -O setup.sh`
 
 Make it executable: `chmod +x setup.sh`
 
